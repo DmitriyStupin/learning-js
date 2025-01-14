@@ -1,1 +1,1 @@
-# №6 JavaScript функции alert, prompt и confirm для взаимодействия с пользователем. Условия switch case.
+# №7 Циклы в JavaScript — while, do while и for. Прерывание цикла break. Продолжение цикла continue.
