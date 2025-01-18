@@ -1,91 +1,94 @@
 /*
-  Function Declaration
-
-  - Такую функцию можно использовать до её фактического объявления в коде.
-  Такая механика называется поднятие (hoisting) - сущность, при обработке скрипта, поднимается на верх
-  своей лексической области видимости, словно она объявлена в начале файла. Именно из-за этой механики,
-  мы можем использовать функцию в коде раньше, чем она объявлена.
-
-  - Такую функцию можно перезаписать
+  Объект предназначен для хранения непримитивных сущностей
 */
-// console.log(sum(5, 2))
+const firstEmptyObject = {}
 
-// function sum(a, b) {
-//   return a + b
+
+/*
+  У объекта синтаксис ключ: значение
+  Ключ нужно оборачивать в кавычки, если оно состоит из двух слов или там есть дефис
+*/
+// const user = {
+//   login: 'Dmitry',
+//   password: 'bebe',
+//   age: 19,
+//   'study status': 'study',
+//   'last-password': 'sdfsdf',
+//   sayHi: () => console.log('Hi') // Функции внутри объектов называются МЕТОДАМИ
 // }
 
 
 /*
-  Function Expression
-
-  - Такую функцию НЕЛЬЗЯ переопределить (При const)
-  - Функцию нельзя использовать в коде до её объявления
+  Чтобы получить доступ к объекту можно написать так
 */
-// const logHello = function() {
-//   console.log('Hello!')
-// }
+// console.log(user.login)
+// console.log(user['password'])
+// user.sayHi()
 
 
 /*
-  Стрелочные функции (Arrow Function) - Самый современный способ
-
-  - Нельзя использовать до её объявления в коде (И ЭТО ЧЕРТ ВОЗЬМИ ПРАВИЛЬНО)
+  В объект можно добавлять и удалять свойства
 */
-// const logName = (name) => {
-//   console.log(`${name}`)
-// }
+// const admin = {}
 
-// logName('Dima')
+// console.log(admin)
+
+// admin.name = 'Dima'
+// admin['last-auth'] = '01.01.2025'
+
+// console.log(admin)
+
+// admin.name = 'Dimon' // Меняем значение свойства у admin
+
+// console.log(admin)
+
+// delete admin['last-auth']
+
+// console.log(admin)
+/*
+  Мы изменяем содержимое объекта, а не переопределяем сам объект, поэтому const нам в этом не мешает
+*/
 
 
 /*
-  Можно передавать функции как значение
+  Можно сокращенно записать свойства у объекта
 */
-// const f1 = () => {
-//   return 'I am f1'
-// }
+const name = 'Kanst'
+const homeTown = 'Kansk'
 
-// const f2 = f1
-
-// console.log(f2())
-
-
-/*
-  Колбэк - это когда одну функцию, мы можем передать в другую функцию.
-  В функцию logMessage мы передали 2 функции fn1, fn2 в качестве АРГУМЕНТОВ и приняли
-  их в функции logMessage в качестве ПАРАМЕТРОВ
-*/
-// const logMessage = (actionBefore, actionAfter) => {
-//   actionBefore()
-//   console.log('Hello')
-//   actionAfter()
-// }
-
-// const fn1 = () => console.log('before')
-// const fn2 = () => console.log('after')
-
-// logMessage(fn1, fn2)
-
-
-
-/*
-  Функция может возвращать результатом другую функцию
-
-  Функция validate возвращает функцию console.log (ДА, ЭТО ТАК-ТО ФУНКЦИЯ)
-*/
-
-const validate = (hasAccess) => {
-  return hasAccess
-    ? () => console.log('Доступ разрешен')
-    : () => console.log('Доступ запрещен')
+const goat = {
+  name,
+  homeTown,
 }
-const logMessage = validate(true)
 
-logMessage()
+// const goat = {name, homeTown} ну или записать так
+
+// console.log(goat)
 
 
 /*
-  Функция позволяет переиспользовать несколько раз один и тот же код
+  Имена свойств(ключи) - ЭТО ВСЕГДА СТРОКИ, ДАЖЕ ЕСЛИ ТАМ ЗАПИСАТЬ ЧИСЛО.
+  Можно использовать даже те слова, которые зарезервированы JS.
+  Имена могут быть вычисляемыми
+*/
 
-  ФУНКЦИЯ ДОЛЖНА ВЫПОЛНЯТЬ ОДИН СЦЕНАРИЙ
+
+/*
+  Проверка наличия свойства у объекта
+*/
+// console.log('name' in goat)
+// console.log('girlfriend' in goat)
+
+
+/*
+  Перебор свойств объекта через цикл for in
+*/
+for (const key in goat) { 
+  console.log(key) // Получение имен свойств
+  console.log(goat[key]) // Получение значений свойста
+}
+
+
+/*
+  Свойства объектов не всегда выводятся в том порядке, в котором мы их задаем в коде
 */
