@@ -1,3 +1,1 @@
-# №13 JavaScript методы примитивов. Числа. Объект Math. Округление чисел. Парсинг чисел из строк.
-
-
+# №14 Строки в JavaScript. Методы at, replace, slice, includes, repeat, trim, split. Длина строки length.
