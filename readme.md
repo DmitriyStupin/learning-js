@@ -1,1 +1,1 @@
-# №14 Строки в JavaScript. Методы at, replace, slice, includes, repeat, trim, split. Длина строки length.
+# №15 JavaScript массивы — основы. Приведение к строке. Копирование, объединение и сравнение массивов.
