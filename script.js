@@ -1,298 +1,146 @@
 /*
-  В массивах также можно сделать деструктурирующее присваивание (как в объектах)
+  Перебор ключей объекта - Object.keys
 */
-// const user = ['Dmitry', 19]
+// const user = {
+//   name: 'Dima',
+//   age: 19,
+//   city: 'Krasnoyarsk'
+// }
 
-// const [name, age] = user // Вот так вот
-// console.log('Имя: ', name)
-// console.log('Возраст: ', age)
+// const userKeys = Object.keys(user)
+
+// console.log('userKeys:', userKeys)
 
 
 
 /*
-  Перебор массива
+  Перебор значений объекта - Object.values
 */
-// const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
+// const user = {
+//   name: 'Dima',
+//   age: 19,
+//   city: 'Krasnoyarsk'
+// }
 
-// letters.forEach((letter) => {
-//   console.log(letter)
+// const userValues = Object.values(user)
+
+// console.log('userValues:', userValues)
+
+
+
+/*
+  Перебор пар объекта ключ-значение - Object.entries
+
+  Позволяет получить массив, где каждое значение это пара ключ-значение
+
+  Object.fromEntries - делает наоборот, из массива массивов пар ключ-значение обратно в объект
+*/
+// const user = {
+//   name: 'Dima',
+//   age: 19,
+//   city: 'Krasnoyarsk'
+// }
+
+// const userEntries = Object.entries(user)
+
+// console.log('userEntries:', userEntries)
+
+// const userEntriesFormatted = Object.fromEntries(userEntries)
+
+// console.log(userEntriesFormatted)
+
+
+
+/*
+  Коллекция Map
+
+   Первым аргументом передается имя ключа - оно может быть любым типом данных
+   Вторы аргументом передается значение - оно может быть любым типом данных
+*/
+// const data = new Map()
+
+// data.set(1, 'Один как число')
+// data.set('1', 'Один как строка')
+
+// console.log(data.get(1)) // Один как число 
+// console.log(data.get('1')) // Один как строка
+
+// // Проверка на существование элемента в Map коллекции - Метод has()
+// console.log(data.has(1)) // true
+// console.log(data.has('1')) // true
+// console.log(data.has('2')) // false, так как такого ключа нету
+
+// // Удаление элемента из Map коллекции - метод delete()
+// data.delete('1')
+// console.log(data.has('1')) // false, так как удалили
+
+// // Очищение всей коллекции - Метод clear()
+// data.clear()
+
+// console.log(data) // ничего нету, так как всё очистили
+// console.log(data.size) // 0, свойство для проверки размера коллекции
+
+
+
+/*
+  Перебор Map коллекции - методы keys, values, entries, цикл for of
+*/
+// const data = new Map()
+
+// data.set('name', 'Dima')
+// data.set('age', 19)
+
+// for (const key of data.keys()) {
+//   console.log('key:',key) // Выведет ключи
+// }
+// for (const value of data.values()) {
+//   console.log('value:',value) // Выведет значения
+// }
+// for (const entry of data.entries()) {
+//   console.log('entry:',entry) // Выведет набор данных ключ-значение в виде массива
+// }
+
+
+
+/*
+  Преобразование из Object в Map
+*/
+// const obj = {
+//   name: 'Dima',
+//   age: 19
+// }
+
+// const map = new Map(Object.entries(obj))
+
+// map.forEach((value, key) => {
+//   console.log(`Ключ: ${key}, Значение: ${value}`)
 // })
 
-
-
 /*
-  Поиск индекса элемента в массиве
-  В такие проверке можно вторым аргументом передавать значение, откуда нужно стартовать проверке
+  Преобразование из Map в Object
 */
-// const prices = [100, 200, 300, 435, 1644, 1234, 300]
+// const map = new Map([
+//   ['name', 'Dima'],
+//   ['age', 19] 
+// ])
 
-// console.log(prices.indexOf(1644)) // 4
-// console.log(prices.indexOf(1642524)) // -1 (Потому что такого элемента нету в массиве)
-// console.log(prices.indexOf(1644)) // 4 Ищет с конца
+// const obj = Object.fromEntries(map)
+// console.log(obj)
 
 
 
 /*
-  Поиск индекса элементов в сложного элемента в массиве.
-  Непримитивные типы данных не получится проверить через indexOf.
-  Поэтому используем findIndex, в котором внутри можно задать условия для проверки.
+  Коллекция уникальных значений Set - хранит только уникальные значения
 
-  В нашей проверке выведется индекс 1
+  Метод add нужен для добавления значений в коллекцию
+  Есть те же методы и свойство, что и в Map (delete(), has(), size, clear())
 
-  В случае , если мы хотим начать проверку с конца массива, то нам надо написать findLastIndex
+  Перебор такой же как и в Map
 */
-// const users = [
-//   {
-//     name: 'Dima',
-//     age: 19
-//   },
-//   {
-//     name: 'Kirill',
-//     age: 20
-//   },
-// ]
+const set = new Set([1, 2, 2, 2, 3])
 
-// console.log(
-//   'Индекс найденного элемента:',
-//   users.findIndex((user) => {
-//     if (user.name === 'Kirill') {
-//       return true
-//     }
-//   })
-// )
+console.log(set) // 1, 2, 3 - так как хранит уникальные значения, то дубликаты 2 не попали
 
+set.add(4) // Добавили 4
 
-
-/*
-  Проверка наличия элемента в массиве
-*/
-// const prices = [100, 200, 300, 435, 1644, 1234, 300]
-
-// console.log(prices.includes(1644)) // true
-// console.log(prices.includes(1623423444)) // false
-
-
-
-/*
-  Метод some()
-
-  С непримитивными элементами опять беда.
-  Мы не можем просто воспользоваться методом includes()
-
-  Но можем сделать так:
-*/
-// const users = [
-//   {
-//     name: 'Dima',
-//     age: 19
-//   },
-//   {
-//     name: 'Kirill',
-//     age: 20
-//   },
-// ]
-
-// console.log(
-//   'Есть ли такой элемент в массиве?',
-//   users.some((user) => {
-//     if (user.name === 'Dima') {
-//       return true
-//     }
-//   })
-// )
-
-
-
-/*
-  Проверка на соответствие всех элементов массива определенному условию - Метод every()
-*/
-// const users = [
-//   {
-//     name: 'Dima',
-//     age: 19
-//   },
-//   {
-//     name: 'Kirill',
-//     age: 20
-//   },
-// ]
-
-// console.log(
-//   'Все взрослые?',
-//   users.every((user) => {
-//     if (user.age >=18) {
-//       return true
-//     }
-//   })
-// )
-
-
-
-/*
-  Поиск элемента по условию (Выведется только первое попавшееся) - Метод find()
-*/
-// const users = [
-//   {
-//     name: 'Dima',
-//     age: 19
-//   },
-//   {
-//     name: 'Kirill',
-//     age: 20
-//   },
-// ]
-
-// console.log(
-//   'Есть ли такой элемент в массиве?',
-//   users.find((user) => {
-//     if (user.name === 'Dima') {
-//       return true
-//     }
-//   })
-// )
-
-
-
-/*
-  Поиск элемента по условию (Выведется ВСЁ) - Метод filter()
-*/
-// const users = [
-//   {
-//     name: 'Dima',
-//     age: 19
-//   },
-//   {
-//     name: 'Dima',
-//     age: 29
-//   },
-//   {
-//     name: 'Kirill',
-//     age: 20
-//   },
-// ]
-
-// console.log(
-//   'Есть ли такИЕ элементЫ в массиве?',
-//   users.filter((user) => {
-//     if (user.name === 'Dima') {
-//       return true
-//     }
-//   })
-// )
-
-
-
-/*
-  Преобразование массива - метод Map()
-// */
-// const users = [
-//   {
-//     name: 'Dima',
-//     age: 19,
-//     city: 'Krasnoyarsk'
-//   },
-//   {
-//     name: 'Kirill',
-//     age: 20,
-//     city: 'Moscow'
-//   },
-// ]
-
-
-// const createMessage = users.map(({ name, age, city }) => {
-//   return `${name} живёт в городе ${city} и ему уже ${age} лет`
-// })
-
-// console.log(createMessage);
-
-
-
-/*
-  Перебор массива с накоплением - Метод reduce()
-  Перебирает слева направо.
-
-  Можно использовать метод reduceRight(), если мы хотим перебор справа налево.
-
-  У нас два параметра у функции reduce.
-  Первый параметр - это как бы накопитель, который накапливает значение предыдущей итерации.
-
-  НА КАЖДОМ ШАГЕ ЦИКЛА МЫ ИСПОЛЬЗУЕМ РЕЗУЛЬТАТ ПРЕДЫДУЩЕЙ ИТЕРАЦИИ - В ЭТОМ СУТЬ МЕТОДА REDUCE()
-
-  0 - это стартовое значение
-*/
-// const users = [
-//   {
-//     name: 'Dima',
-//     age: 19
-//   },
-//   {
-//     name: 'Kirill',
-//     age: 20
-//   },
-//   {
-//     name: 'Egor',
-//     age: 22
-//   },
-// ]
-
-// const ageSum = users.reduce((sum, user) =>{
-//   return sum + user.age
-// }, 0)
-
-// console.log('Средний возраст пользователей: ', Math.round(ageSum / users.length))
-
-
-
-/*
-  Переворачивание массива - Метод reverse()
-*/
-// const arr = ['A', 'B', 'C']
-// // const arrReverse = arr.reverse()
-
-// // console.log(arr) // ['C', 'B', 'A'], да, изначальный массив тоже поменяется
-
-// // Но можно сделать так
-// const arrReverse = [...arr].reverse()
-// console.log(arr) // ['A', 'B', 'C'] // Победа, из-за Spread оператора изменения в исходном массиве не произошли
-// console.log(arrReverse) // ['C', 'B', 'A']
-
-
-
-/*
-  Сортировка массива - Метод sort()
-
-  Тоже может изменить исходный массив, поэтому надо пользоваться Spread оператором
-*/
-// const names = ['Dima', 'Kirill', 'Egor']
-
-// const sortedNames = [...names].sort()
-
-// console.log(
-//   'Отсортированные имена: ',
-//   sortedNames
-// ) // Dima, Egor, Kirill - в алфавитном порядке
-
-
-
-/*
-  Числа он не отсортирует по возрастанию без явной callback функции, так как он будет приводить их к строке
-*/
-// const numbers = [8, 500, 4]
-
-// const numbersSorted = [...numbers].sort()
-
-// console.log(
-//   'Отсортированные имена: ',
-//   numbersSorted
-// ) // 4, 500, 8 - т.к. приводиться к строке и сравнивается посимвольно
-
-// const numbers = [8, 500, 4]
-
-// const numbersSorted = [...numbers].sort((a, b) => {
-//   return a - b
-// })
-
-// console.log(
-//   'Отсортированные имена: ',
-//   numbersSorted
-// ) // 4, 8, 500 - А вот с переданной функцией проверки он сортирует правильно 
+console.log(set)
