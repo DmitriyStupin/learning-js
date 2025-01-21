@@ -1,27 +1,53 @@
-// Функция setTimeout - отложенное выполнение кода
-// const timerID =  setTimeout(() => {
-//   console.log('Через 3 секунды')
-// }, 3000) // Функция выполнится через 3 секунды
+// Конструкция try catch - как поймать ошибку в JS
+// console.log('Begin code...')
 
-// clearTimeout(timerID) // Очистка таймера, таймер не сработает
+// try {
+//   // пробуем выполнить код
+//   const names = undefined
 
+//   names.forEach((name) => {
+//     console.log('name:', name)
+//   })
+// } catch (error) {
+//   // обрабатываем возникшую ошибку
+//   console.log('Возникла ошибка: ', error)
+// }
 
-
-// Функция setInterval - регулярное выполнение кода
-// const intervalID =  setInterval(() => {
-//   console.log('Hello') // Раз в секунуду в браузере появляется сообщение 'Hello'
-// }, 1000)
-
-// setTimeout(() => {
-//   clearInterval(intervalID) // Интервал будет работать всего 5 секунд
-// }, 5000)
-
-// clearInterval(intervalID) // Также отменяет выполнение
+// console.log('End of code...')
 
 
 
-// Особенности setInterval
-/*
-  1. setInterval не гарантирует, что предыдущий вызов кода завершил свою работу
-  2. У него не совсем нулевая задержка, она равна примерно 4 милисекундам
-*/
+// throw - генерация кастомной ошибки, класс Error
+// console.log('Begin code...')
+
+// try {
+//   const userJSON = `{
+//     "name": "Dima",
+//     "age": 19
+//   }`
+//   const user = JSON.parse(userJSON)
+//   const {name, age, city} = user
+
+//   if (!city) {
+//     const errorMessage = 'Город не заполнен'
+
+//     throw new Error(errorMessage)// Это кастомная ошибка, которую мы пробросили, если город не заполнен
+//   }
+
+//   console.log(`Hello, ${name}, you're ${age}y.o. and you live in ${city}`)
+// } catch (error) {
+//   console.log('Error!', error)
+// }
+
+// console.log('End of code...')
+
+
+
+// try catch finally - гарантированное выполнение блока кода
+// try {
+//   // пытаемся выполнить код
+// } catch (error) {
+//   // обрабатываем возникшую ошибку
+// } finally {
+//    // выполняем при любом раскладе
+// }

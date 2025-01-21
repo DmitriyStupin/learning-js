@@ -1,1 +1,1 @@
-# №20 JavaScript Отложенное и регулярное выполнение кода — setTimeout и setInterval, clearTimeout и др.
+# №21 Обработка ошибок в JavaScript — try catch finally, throw, класс Error
