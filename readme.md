@@ -1,1 +1,1 @@
-# №21 Обработка ошибок в JavaScript — try catch finally, throw, класс Error
+# №22 JavaScript событийный цикл Event Loop, асинхронный код, промисы (Promise), async / await
