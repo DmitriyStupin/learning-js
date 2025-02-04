@@ -1,1 +1,1 @@
-# №25 DOM в JavaScript — Навигация по элементам дерева, атрибуты async и defer
+# №26 JavaScript DOM. Поиск элементов: getElement и querySelector

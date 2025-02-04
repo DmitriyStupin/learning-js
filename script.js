@@ -1,54 +1,57 @@
 /*
-  Объект document
+  Поиск элементов в DOM-дереве
 */
-// console.log(document)
-// console.log(document.documentElement)
-// console.log(document.head)
-// console.log(document.body)
+// const buttonElement = document.getElementById('myButton')
+// console.log('Button Element:', buttonElement)
 
 
 
 /*
-  Получение соседних элементов DOM-элемента
+  Поиск элемента по CSS-селектору - querySelector (Выведет только один элемент)
 */
-// console.log(
-//   'Элемент <body>:', document.body
-// )
-
-// console.log(
-//   'Родительский элемент над <body>:', document.body.parentElement
-// )
-
-// console.log(
-//   'Соседний Элемент перед <body>:', document.body.previousElementSibling
-// )
-
-// console.log(
-//   'Элемент <body>:', document.body.nextElementSibling
-// )
+// const buttonElement = document.querySelector('.button');
+// console.log(buttonElement)
 
 
 
 /*
-  Свойство children - получение дочерниъ элементов DOM-элемента
+  Поиск элементОВ по CSS-селектору - querySelectorAll (Выведет все найденные элементы)
 */
-// console.log(
-//   'Дочерние элементы <body>:',
-//   document.body.children
-// )
+// const listItems = document.querySelectorAll('.item')
+
+// console.log(listItems)
 
 
 
 /*
-  Получение первого и последнего дочернего элеменета DOM-элемента
+  Нахождение ближайшего родительского элемента по селектору - метод closest
 */
-const divElement = document.body.children[0]
-console.log(
-  'Первый дочерний элемент внутри div',
-  divElement.firstElementChild
-)
+// const thirdBoxElement = document.querySelector('.box-3')
 
-console.log(
-  'Последний дочерний элемент внутри div',
-  divElement.lastElementChild
-)
+// const firstBoxElement = thirdBoxElement.closest('.box-1')
+
+// console.log(firstBoxElement)
+
+
+
+/*
+  Поиск по имени тега, CSS-классу, аттрибуту name
+
+  В отличии от querySelector и querySelectorAll у нас возвращаются ЖИВЫЕ коллекции
+*/
+// const listElement = document.getElementsByTagName('ul')
+// const boxElement = document.getElementsByClassName('box-1')
+// const nameElement = document.getElementsByName('name')
+
+
+
+/*
+  Элементы лучше всего находить через слектор по data-атрибуту
+*/
+// const thirdBoxElement = document.querySelector('[data-js-box]')
+// console.log(thirdBoxElement)
+
+
+/*
+  Короче, классы нужны для стилизации, а атрибуты data-js- нужны для скриптов
+*/
