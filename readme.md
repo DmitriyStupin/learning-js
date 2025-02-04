@@ -1,1 +1,1 @@
-# №23 Модули в JavaScript, import и export, декомпозиция кода
+# №24 JavaScript в браузере — DOM (Document Object Model) и BOM (Browser Object Model)
