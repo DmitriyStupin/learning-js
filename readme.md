@@ -1,1 +1,1 @@
-# №22 JavaScript событийный цикл Event Loop, асинхронный код, промисы (Promise), async / await
+# №23 Модули в JavaScript, import и export, декомпозиция кода
