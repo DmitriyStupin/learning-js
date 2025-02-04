@@ -1,1 +1,1 @@
-# №24 JavaScript в браузере — DOM (Document Object Model) и BOM (Browser Object Model)
+# №25 DOM в JavaScript — Навигация по элементам дерева, атрибуты async и defer
