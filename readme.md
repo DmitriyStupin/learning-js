@@ -1,1 +1,1 @@
-# №24 JavaScript в браузере — DOM (Document Object Model) и BOM (Browser Object Model)
+# №27 JavaScript DOM-элементы: свойства и атрибуты, поведение value, data-* атрибуты
