@@ -1,1 +1,1 @@
-# №27 JavaScript DOM-элементы: свойства и атрибуты, поведение value, data-* атрибуты
+# №28 DOM JavaScript: стили и CSS-классы. Свойства style и classList. Управление CSS-переменными в JS.
