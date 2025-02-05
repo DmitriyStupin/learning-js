@@ -1,98 +1,50 @@
-// Свойства DOM-элементов
+// Полные размеры элемента - свойства offsetWidth и offsetHeight
+const boxElement = document.querySelector('.box')
+// Учитывают полные размеры (width, height, padding, border и т.д.)
+// console.log('Полная ширина:', boxElement.offsetWidth)
+// console.log('Полная высота:', boxElement.offsetHeight)
+
+
+
+// Размеры рамки элемента - свойства clientLeft и clientTop
+// console.log('Ширина левой рамки:', boxElement.clientLeft)
+// console.log('Ширина верхней рамки:', boxElement.clientTop)
 /*
-  У каждого DOM-элемента будут только те свойства, которые ему соответствуют.
-  Например: у тега form есть атрибут action, а у input такого атрибута нету.
+  clientLeft - расстояние от левой внешней границы элемента до внутренностей (с учетом скроллбара)
+  clientTop - расстояние от верхней внешней границы элемента до внутренностей
 */
 
 
 
-// Чтение и изменение свойство DOM-элементов
-// const formElement = document.querySelector('.form')
-// console.log('formElement action:', formElement.action) // Чтение (Или Геттер)
-// formElement.action = '/register' // Изменяем (Или Сеттер)
-// console.log('formElement action:', formElement.action) // Чтение (Или Геттер)
+// Размеры элемента без учёта рамки и скроллбара - clientWidth и clientHeight
+// console.log('Ширина без учета рамки и скроллбара:', boxElement.clientWidth)
+// console.log('Высота без учета рамки и скроллбара:', boxElement.clientHeight)
 
 
 
-// HTML-атрибуты
-/*
-  Если у HTML-элемента будут кастомные атрибуты, то они не будут отображаться в DOM
-
-  Но есть способ получения таких атрибутов
-*/
+// Размеры элемента с учётом прокручиваемой области - scrollWidth и scrollHeight
+// console.log('Ширина без учета рамки, но включая прокручиваемую область:', boxElement.scrollWidth)
+// console.log('Высота без учета рамки, но включая прокручиваемую область:', boxElement.scrollHeight)
 
 
 
-// Получение значения атрибута - метод getAttribute
-// const formElement = document.querySelector('.form')
-// console.log('formElement qwerty:', formElement.getAttribute('qwerty'))
-// console.log('formElement data-some-value:', formElement.getAttribute('data-some-value'))
+// Размеры невидимой прокрученной области элемента - scrollLeft и scrollTop
+// console.log('Ширина невидимой уже прокрученной по горизонтали области:', boxElement.scrollLeft)
+// console.log('Высота невидимой уже прокрученной по горизонтали области:', boxElement.scrollTop)
 
 
 
-// Установка значения атрибута - метод setAttribute
-// const formElement = document.querySelector('.form')
-
-// formElement.setAttribute('qwerty', 'exe-exe-exe') // Установка значения через сеттер
-// formElement.setAttribute('data-some-value', 'ssdkjhfkjsfhgierjt') // Установка значения через сеттер
-
-// console.log('formElement qwerty:', formElement.getAttribute('qwerty'))
-// console.log('formElement data-some-value:', formElement.getAttribute('data-some-value'))
+// Прокрутка содержимого элемента - метод scroll
+// boxElement.scroll(10, 50)
 
 
 
-// Удаление атрибута - метод removeAttribute
-// const formElement = document.querySelector('.form')
+// Координаты элемента относительно окна - метод getBoundingClientRect
+const boxElementRectParams = boxElement.getBoundingClientRect()
 
-// formElement.removeAttribute('qwerty')
-// formElement.removeAttribute('data-some-value')
-
-// console.log('formElement qwerty:', formElement.getAttribute('qwerty'))
-// console.log('formElement data-some-value:', formElement.getAttribute('data-some-value'))
+// console.log(boxElementRectParams)
 
 
 
-// Проверка наличия атрибута - метод hasAttribute
-// const formElement = document.querySelector('.form')
-// console.log('formElement qwerty:', formElement.hasAttribute('qwerty')) // true
-// console.log('formElement data-some-value:', formElement.hasAttribute('data-some-value')) // true
-// console.log('formElement data-some-value:', formElement.hasAttribute('data-some-valuewqwqe')) // false
-
-
-
-// Необычное поведение атрибута value
-// const loginInputElement = document.querySelector('.form__input[name="login"]')
-
-// // loginInputElement.value = 'admin'
-// // console.log('input value:', loginInputElement.getAttribute('value')) // Выведет null
-// // console.log('input value:', loginInputElement.value) // Выведет admin
-
-// loginInputElement.setAttribute('value', 'admin')
-// console.log('input value:', loginInputElement.getAttribute('value')) // Выведет admin
-// console.log('input value:', loginInputElement.value) // Выведет admin
-/*
-  value у полей ввода синхронизируется только в одну сторону
-
-  Не манипулируйте атрибутом value через методы getAttribute и setAttribute. Обращайтесь к value 
-  как к свойству DOM-элемента, тогда мы будем получать корректное актуальное значение
-*/
-
-
-
-// Чтение и запись data-атрибутов - свойство dataset
-// const formElement = document.querySelector('[data-js-form-login]')
-// console.log(formElement.dataset) // Чтение
-
-// formElement.dataset.jsFormLogin = 'admin' // Изменение
-// formElement.dataset.password = 'secret' // Добавление
-
-// console.log(formElement.dataset) // Чтение
-
-
-
-// Объект в качестве значения атрибута элемента
-const formElement = document.querySelector('[data-js-form-login]')
-const fromElementObject = JSON.parse(formElement.getAttribute('data-js-form-login'))
-
-console.log(fromElementObject)
-console.log(fromElementObject.age)
+// Координаты относительно всей страницы - свойства window.scrollX и window.scrollY
+console.log('Координаты позиции скролла страницы:', window.scrollX, window.scrollY)
