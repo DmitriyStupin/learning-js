@@ -1,1 +1,1 @@
-# №28 DOM JavaScript: стили и CSS-классы. Свойства style и classList. Управление CSS-переменными в JS.
+# №29 Браузерный JavaScript: размеры и координаты DOM-элементов

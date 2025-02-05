@@ -1,59 +1,50 @@
-// Задание стилей через свойство style
+// Полные размеры элемента - свойства offsetWidth и offsetHeight
 const boxElement = document.querySelector('.box')
+// Учитывают полные размеры (width, height, padding, border и т.д.)
+// console.log('Полная ширина:', boxElement.offsetWidth)
+// console.log('Полная высота:', boxElement.offsetHeight)
 
-// boxElement.style.position = 'absolute'
-// boxElement.style.top = '50px'
-// boxElement.style.left = '350px'
 
-// boxElement.style.height = "300px"
-// // Или так
-// boxElement.style.cssText += `
-//   position: absolute;
-//   top: 50px;
-//   left: 400px;
-//   width: 20px
-// `
-// Если не указать +=, то значения перезапишутся, а с += прибавятся к уже существующим значениям
+
+// Размеры рамки элемента - свойства clientLeft и clientTop
+// console.log('Ширина левой рамки:', boxElement.clientLeft)
+// console.log('Ширина верхней рамки:', boxElement.clientTop)
 /*
- style берет в расчет только те стили, что написаны inline (т.е. прям внутри html разметки)
+  clientLeft - расстояние от левой внешней границы элемента до внутренностей (с учетом скроллбара)
+  clientTop - расстояние от верхней внешней границы элемента до внутренностей
 */
 
 
 
-// Вычисленные значения стилей - функция getComputedStyle
-// console.log(getComputedStyle(boxElement))
-// console.log(getComputedStyle(boxElement).width)
+// Размеры элемента без учёта рамки и скроллбара - clientWidth и clientHeight
+// console.log('Ширина без учета рамки и скроллбара:', boxElement.clientWidth)
+// console.log('Высота без учета рамки и скроллбара:', boxElement.clientHeight)
 
 
 
-// Управление CSS-классами через JavaScript - свойства className и classList
-// boxElement.className += ' class__name' // Так лучше не писать
-
-// boxElement.classList.add('blue') // Можно добавить несколько
-// boxElement.classList.remove('blue') // Можно добавить несколько
+// Размеры элемента с учётом прокручиваемой области - scrollWidth и scrollHeight
+// console.log('Ширина без учета рамки, но включая прокручиваемую область:', boxElement.scrollWidth)
+// console.log('Высота без учета рамки, но включая прокручиваемую область:', boxElement.scrollHeight)
 
 
 
-// Добавить или удалить класс в зависимости от условия - метод classListToggle
-boxElement.classList.toggle('blue')
-/*
-  Добавит класс, если его нету
-  Удалит класс, если он уже есть
-*/
-const hasError = true // Допустим тут какие-то сложные условия
-
-boxElement.classList.toggle('red', hasError) // Добавит класс red, если hasError будет true
-/*
-  classList.toggle удобно применять для индикации различных состояний
-*/
+// Размеры невидимой прокрученной области элемента - scrollLeft и scrollTop
+// console.log('Ширина невидимой уже прокрученной по горизонтали области:', boxElement.scrollLeft)
+// console.log('Высота невидимой уже прокрученной по горизонтали области:', boxElement.scrollTop)
 
 
 
-// Проверка наличия класса у DOM-элемента - метод contains
-console.log(boxElement.classList.contains('red')) // true
-console.log(boxElement.classList.contains('reqweeqwwewd')) // false
+// Прокрутка содержимого элемента - метод scroll
+// boxElement.scroll(10, 50)
 
 
 
-// Управление CSS-переменными через JavaScript - style.setProperty
-boxElement.style.setProperty('--border-color', 'black') // Изменили цвет на черный
+// Координаты элемента относительно окна - метод getBoundingClientRect
+const boxElementRectParams = boxElement.getBoundingClientRect()
+
+// console.log(boxElementRectParams)
+
+
+
+// Координаты относительно всей страницы - свойства window.scrollX и window.scrollY
+console.log('Координаты позиции скролла страницы:', window.scrollX, window.scrollY)
