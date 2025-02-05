@@ -1,1 +1,1 @@
-# №26 JavaScript DOM. Поиск элементов: getElement и querySelector
+# №27 JavaScript DOM-элементы: свойства и атрибуты, поведение value, data-* атрибуты

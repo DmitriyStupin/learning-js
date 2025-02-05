@@ -1,57 +1,98 @@
+// Свойства DOM-элементов
 /*
-  Поиск элементов в DOM-дереве
+  У каждого DOM-элемента будут только те свойства, которые ему соответствуют.
+  Например: у тега form есть атрибут action, а у input такого атрибута нету.
 */
-// const buttonElement = document.getElementById('myButton')
-// console.log('Button Element:', buttonElement)
 
 
 
+// Чтение и изменение свойство DOM-элементов
+// const formElement = document.querySelector('.form')
+// console.log('formElement action:', formElement.action) // Чтение (Или Геттер)
+// formElement.action = '/register' // Изменяем (Или Сеттер)
+// console.log('formElement action:', formElement.action) // Чтение (Или Геттер)
+
+
+
+// HTML-атрибуты
 /*
-  Поиск элемента по CSS-селектору - querySelector (Выведет только один элемент)
+  Если у HTML-элемента будут кастомные атрибуты, то они не будут отображаться в DOM
+
+  Но есть способ получения таких атрибутов
 */
-// const buttonElement = document.querySelector('.button');
-// console.log(buttonElement)
 
 
 
+// Получение значения атрибута - метод getAttribute
+// const formElement = document.querySelector('.form')
+// console.log('formElement qwerty:', formElement.getAttribute('qwerty'))
+// console.log('formElement data-some-value:', formElement.getAttribute('data-some-value'))
+
+
+
+// Установка значения атрибута - метод setAttribute
+// const formElement = document.querySelector('.form')
+
+// formElement.setAttribute('qwerty', 'exe-exe-exe') // Установка значения через сеттер
+// formElement.setAttribute('data-some-value', 'ssdkjhfkjsfhgierjt') // Установка значения через сеттер
+
+// console.log('formElement qwerty:', formElement.getAttribute('qwerty'))
+// console.log('formElement data-some-value:', formElement.getAttribute('data-some-value'))
+
+
+
+// Удаление атрибута - метод removeAttribute
+// const formElement = document.querySelector('.form')
+
+// formElement.removeAttribute('qwerty')
+// formElement.removeAttribute('data-some-value')
+
+// console.log('formElement qwerty:', formElement.getAttribute('qwerty'))
+// console.log('formElement data-some-value:', formElement.getAttribute('data-some-value'))
+
+
+
+// Проверка наличия атрибута - метод hasAttribute
+// const formElement = document.querySelector('.form')
+// console.log('formElement qwerty:', formElement.hasAttribute('qwerty')) // true
+// console.log('formElement data-some-value:', formElement.hasAttribute('data-some-value')) // true
+// console.log('formElement data-some-value:', formElement.hasAttribute('data-some-valuewqwqe')) // false
+
+
+
+// Необычное поведение атрибута value
+// const loginInputElement = document.querySelector('.form__input[name="login"]')
+
+// // loginInputElement.value = 'admin'
+// // console.log('input value:', loginInputElement.getAttribute('value')) // Выведет null
+// // console.log('input value:', loginInputElement.value) // Выведет admin
+
+// loginInputElement.setAttribute('value', 'admin')
+// console.log('input value:', loginInputElement.getAttribute('value')) // Выведет admin
+// console.log('input value:', loginInputElement.value) // Выведет admin
 /*
-  Поиск элементОВ по CSS-селектору - querySelectorAll (Выведет все найденные элементы)
+  value у полей ввода синхронизируется только в одну сторону
+
+  Не манипулируйте атрибутом value через методы getAttribute и setAttribute. Обращайтесь к value 
+  как к свойству DOM-элемента, тогда мы будем получать корректное актуальное значение
 */
-// const listItems = document.querySelectorAll('.item')
-
-// console.log(listItems)
 
 
 
-/*
-  Нахождение ближайшего родительского элемента по селектору - метод closest
-*/
-// const thirdBoxElement = document.querySelector('.box-3')
+// Чтение и запись data-атрибутов - свойство dataset
+// const formElement = document.querySelector('[data-js-form-login]')
+// console.log(formElement.dataset) // Чтение
 
-// const firstBoxElement = thirdBoxElement.closest('.box-1')
+// formElement.dataset.jsFormLogin = 'admin' // Изменение
+// formElement.dataset.password = 'secret' // Добавление
 
-// console.log(firstBoxElement)
-
-
-
-/*
-  Поиск по имени тега, CSS-классу, аттрибуту name
-
-  В отличии от querySelector и querySelectorAll у нас возвращаются ЖИВЫЕ коллекции
-*/
-// const listElement = document.getElementsByTagName('ul')
-// const boxElement = document.getElementsByClassName('box-1')
-// const nameElement = document.getElementsByName('name')
+// console.log(formElement.dataset) // Чтение
 
 
 
-/*
-  Элементы лучше всего находить через слектор по data-атрибуту
-*/
-// const thirdBoxElement = document.querySelector('[data-js-box]')
-// console.log(thirdBoxElement)
+// Объект в качестве значения атрибута элемента
+const formElement = document.querySelector('[data-js-form-login]')
+const fromElementObject = JSON.parse(formElement.getAttribute('data-js-form-login'))
 
-
-/*
-  Короче, классы нужны для стилизации, а атрибуты data-js- нужны для скриптов
-*/
+console.log(fromElementObject)
+console.log(fromElementObject.age)
