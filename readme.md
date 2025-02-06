@@ -1,1 +1,1 @@
-# №29 Браузерный JavaScript: размеры и координаты DOM-элементов
+# №30 JS в браузере: размеры окна и страницы, скролл scrollIntoView, scrollTo, scroll, scrollBy
