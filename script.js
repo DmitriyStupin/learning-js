@@ -1,69 +1,91 @@
-// Ширина и высота ОКНА - свйоства clientWidth и clientHeight у documentElement
-const htmlElement = document.documentElement
-
-// console.log('Ширина окна:', htmlElement.clientWidth)
-// console.log('Высота окна:', htmlElement.clientHeight)
-
-
-
-// Ширина и высота ОКНА - свойства innerWidth и innerHeight у window
-// console.log('Ширина окна через window:', window.innerWidth)
-// console.log('Высота окна через window:', window.innerHeight)
+// Чтение и изменение текстового содержимого элемента - свойство textContent
+const paragraphElement = document.querySelector('.p-1')
+// console.log('1. Текстовое содержимое первого параграфа:', paragraphElement.textContent)
+// paragraphElement.textContent = 'Обновленный текст'
+// console.log('2. Текстовое содержимое первого параграфа:', paragraphElement.textContent)
+// paragraphElement.textContent += ' Добавленный текст'
+// console.log('3. Текстовое содержимое первого параграфа:', paragraphElement.textContent)
 /*
-  А в чем собственно разница между свойствами?
-
-  Дело в том, что innerWidth и innerHeight не учитывают наличие скроллбара на странице.
-  Поэтому значения при применении этих свойств будут разными.
-
-  Я так понял, что лучше всего использовать clientWidth и clientHeight
+  Свойство textContent не позволяет вставить html-разметку. Для этого есть другое свойство
 */
 
 
 
-// Ширина и высота страницы - свойства scrollWidth и scrollHeight у documentElement
-// console.log('Ширина страницы:', htmlElement.scrollWidth)
-// console.log('Высота страницы:', htmlElement.scrollHeight)
+// Чтение и изменение HTML-содержимого элемента - свойство innerHTML
+// console.log('HTML-содержимое параграфа:', paragraphElement.innerHTML)
+// paragraphElement.innerHTML = `
+//   Обновленный текст
+//   <p>А также новый добавленный текст в новом параграфе</p>
+// `
+// console.log('HTML-содержимое параграфа:', paragraphElement.innerHTML)
+// paragraphElement.innerHTML += `
+//   Просто добавил текст
+// `
+// console.log('HTML-содержимое параграфа:', paragraphElement.innerHTML)
 /*
-  Свойство scrollHeight иногда может вести себя странно и показывать некорректный результат
+  Также есть свойство outerHTML - оно позволяет получить HTMl-содержимое элемента
+  включая сам элемент
 */
 
 
 
-// Координаты текущего скролла страницы - свойства window.scrollX и window.scrollY
-// console.log('Координаты позиции скролла страницы:', window.scrollX, window.scrollY)
-
-
-
-// Программный скролл страницы или любого другого элемента - методы scroll, scrollTo, scrollBy
-// window.scroll({
-//   top: 300,
-//   behavior: 'smooth'
-// })
-
-// Тоже самое, но рекомендуют использовать именно scroll
-// window.scrollTo({
-//   top: 300,
-//   behavior: 'smooth'
-// })
-
-// window.scrollBy({
-//   top: 300,
-//   behavior: 'smooth'
-// })
 /*
-  Короче, в обычной ситуации лучше использовать scroll, а не scrollTo (не знаю почему)
-
-  А если нам нужно сделать скролл относительно ТЕКУЩЕГО положения на странице, то используем scrollBy
-
-  Дело в том, что метод scroll делает отсчет от верхней границы страницы, а scrollBy от текущего положения
+  У innerHTML есть проблема - он перерисовывает всю разметку, даже если нам необходимо
+  добавить всего лишь одну строчку.
+  Поэтому внизу будет более правильный способ создания и добавления элементов.
 */
 
 
 
-// Скролл страницы до видимости определенного элемента - метод scrollIntoView
+// Создание элемента - document.createElement
+const newParagraph = document.createElement('p')
+// const newParagraph2 = document.createElement('p')
+
+newParagraph.textContent = 'Четвертый параграф'
+// newParagraph2.textContent = 'Пятый параграф'
+newParagraph.classList.add('p-4')
+// newParagraph2.classList.add('p-5')
+
+// // И вставка элементов - методы append(в конец в элементе) и prepend(в начало в элементе)
 const boxElement = document.querySelector('.box')
 
-boxElement.scrollIntoView({
-  behavior: 'smooth',
-  block: 'end' // По умолчанию start. Также есть end, center, nearest(браузер сам определит ближайшую точку скролла)
-})
+// boxElement.append(newParagraph)
+// boxElement.after(newParagraph2)
+/*
+  Есть еще методы before и after, которые добавляют элемент ДО и ПОСЛЕ элемента к которому мы 
+  применяем эти методы.
+  Т.е. если применить на box элементы before или after, то элементы в разметке добавяться
+  ДО и ПОСЛЕ него.
+*/
+
+
+
+// Вставка элементов с заменой - метод replaceWith
+/*
+  Этот метод просто полностью заменяет один элемент на другой
+*/
+// boxElement.replaceWith(newParagraph)
+
+
+
+// Вставка HTML-разметки - метод insertAdjacentHTMl
+const newHTML = `<s>Текст</s>`
+
+boxElement.insertAdjacentHTML('afterbegin', newHTML)
+
+
+
+// Удаление элементов - метод remove
+
+
+
+// Клонирование элемента - метод cloneNode
+const boxElementClone = boxElement.cloneNode(true) // без true будет поверхностное клонирование(без содержимого)
+boxElement.after(boxElementClone)
+
+
+
+// Перемещение элементов
+/*
+  Можно воспользоваться уже знакомыми методами after, befin, insertAdjacentElement и так далее
+*/
