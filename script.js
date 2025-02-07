@@ -1,60 +1,45 @@
+// Делегирование событий
 /*
-  Есть еще возможность добавить событие через разметку в HTML, но это не самый
-  удобный и не самый лучший способ. Поэтому мы будем делать это по-другому.
+  Как бы задачу решил новичок:
 */
+// const todoItemElements = document.querySelectorAll('.todo__item')
 
-// Обработка событий - свойство события у DOM-элемента
-// const buttonElement = document.querySelector('button')
-
-// buttonElement.onclick = () => {
-//   console.log('Произошел клик!')
-// }
-/*
-  У подобного способа есть минусы: мы не можем повесить несколько событий!
-  Самым удобным и фактически правильным способом добавления события является
-  способ через addEventListener
-*/
-// buttonElement.addEventListener('click', () => {
-//   console.log('Click')
+// todoItemElements.forEach((todoItemElement) => {
+//   todoItemElement.addEventListener('click', () => {
+//     todoItemElement.classList.toggle('is-completed')
+//   })
 // })
-// buttonElement.addEventListener('click', () => {
-//   console.log('Super Click')
-// })'
+/*
+  У нас в дереве много элементов todo__item и каждый этот элемент имеет
+  обработчик клика. То есть, если бы таких элементов было 1000, то браузер хранил бы
+  информацию о 1000 обработчиков события клика.
 
+  К тому же, если мы добавим элементы через JS, то они не попадут под обработчики кликов.
 
-
-// Удаление события - метод removeEventListener
-// const firstButtonElement = document.querySelector('.button-1')
-// const secondButtonElement = document.querySelector('.button-2')
-
-// const logMessage = () => {
-//   console.log('Click!')
+  Поэтому, изучим концепцию делегирования событий
+*/
+// const onTodoItemClick = (todoItemElement) => {
+//   todoItemElement.classList.toggle('is-completed')
 // }
 
-// firstButtonElement.addEventListener('click', logMessage)
+// document.addEventListener('click', (event) => {
+//   const todoItemElement = event.target.closest('.todo__item');
 
-// secondButtonElement.addEventListener('click', () => {
-//   firstButtonElement.removeEventListener('click', logMessage)
-// })
-/*
-  Важный момент: в методе removeEventListener, вторым аргументом мы передаем функцию,
-  которую нам надо убрать, но у нас там могла быть анонимная стрелочная функция. А её
-  передать просто так у нас не получиться, поэтому мы вынесли эту функцию 
-  в переменную logMessage и ссылаемся на нее при кликах
-*/
-
-
-
-// Объект события - event(Уникальный объект для каждого события)
-// const buttonElement = document.querySelector('.button-1')
-
-// buttonElement.addEventListener('click', (event) => {
-//   console.log(event)
+//   if (todoItemElement) {
+//     onTodoItemClick(todoItemElement)
+//   }
 // })
 
 
 
-// Всплытие событий(Или bubbling) и погружение(Capturing)
+// Поведение браузера по умолчанию - метод preventDefault()
 /*
-  Вообщем, в теории вроде немного понятно, но на практике не особо
+  Чтобы отменить действие браузера по умолчанию необходимо при обработчике события
+  использовать метод event.preventDefault()
 */
+
+
+
+// Генерация собственных событий - класс Event, метод dispatchEvent
+
+
