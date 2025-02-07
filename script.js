@@ -1,69 +1,60 @@
-// Ширина и высота ОКНА - свйоства clientWidth и clientHeight у documentElement
-const htmlElement = document.documentElement
-
-// console.log('Ширина окна:', htmlElement.clientWidth)
-// console.log('Высота окна:', htmlElement.clientHeight)
-
-
-
-// Ширина и высота ОКНА - свойства innerWidth и innerHeight у window
-// console.log('Ширина окна через window:', window.innerWidth)
-// console.log('Высота окна через window:', window.innerHeight)
 /*
-  А в чем собственно разница между свойствами?
+  Есть еще возможность добавить событие через разметку в HTML, но это не самый
+  удобный и не самый лучший способ. Поэтому мы будем делать это по-другому.
+*/
 
-  Дело в том, что innerWidth и innerHeight не учитывают наличие скроллбара на странице.
-  Поэтому значения при применении этих свойств будут разными.
+// Обработка событий - свойство события у DOM-элемента
+// const buttonElement = document.querySelector('button')
 
-  Я так понял, что лучше всего использовать clientWidth и clientHeight
+// buttonElement.onclick = () => {
+//   console.log('Произошел клик!')
+// }
+/*
+  У подобного способа есть минусы: мы не можем повесить несколько событий!
+  Самым удобным и фактически правильным способом добавления события является
+  способ через addEventListener
+*/
+// buttonElement.addEventListener('click', () => {
+//   console.log('Click')
+// })
+// buttonElement.addEventListener('click', () => {
+//   console.log('Super Click')
+// })'
+
+
+
+// Удаление события - метод removeEventListener
+// const firstButtonElement = document.querySelector('.button-1')
+// const secondButtonElement = document.querySelector('.button-2')
+
+// const logMessage = () => {
+//   console.log('Click!')
+// }
+
+// firstButtonElement.addEventListener('click', logMessage)
+
+// secondButtonElement.addEventListener('click', () => {
+//   firstButtonElement.removeEventListener('click', logMessage)
+// })
+/*
+  Важный момент: в методе removeEventListener, вторым аргументом мы передаем функцию,
+  которую нам надо убрать, но у нас там могла быть анонимная стрелочная функция. А её
+  передать просто так у нас не получиться, поэтому мы вынесли эту функцию 
+  в переменную logMessage и ссылаемся на нее при кликах
 */
 
 
 
-// Ширина и высота страницы - свойства scrollWidth и scrollHeight у documentElement
-// console.log('Ширина страницы:', htmlElement.scrollWidth)
-// console.log('Высота страницы:', htmlElement.scrollHeight)
+// Объект события - event(Уникальный объект для каждого события)
+// const buttonElement = document.querySelector('.button-1')
+
+// buttonElement.addEventListener('click', (event) => {
+//   console.log(event)
+// })
+
+
+
+// Всплытие событий(Или bubbling) и погружение(Capturing)
 /*
-  Свойство scrollHeight иногда может вести себя странно и показывать некорректный результат
+  Вообщем, в теории вроде немного понятно, но на практике не особо
 */
-
-
-
-// Координаты текущего скролла страницы - свойства window.scrollX и window.scrollY
-// console.log('Координаты позиции скролла страницы:', window.scrollX, window.scrollY)
-
-
-
-// Программный скролл страницы или любого другого элемента - методы scroll, scrollTo, scrollBy
-// window.scroll({
-//   top: 300,
-//   behavior: 'smooth'
-// })
-
-// Тоже самое, но рекомендуют использовать именно scroll
-// window.scrollTo({
-//   top: 300,
-//   behavior: 'smooth'
-// })
-
-// window.scrollBy({
-//   top: 300,
-//   behavior: 'smooth'
-// })
-/*
-  Короче, в обычной ситуации лучше использовать scroll, а не scrollTo (не знаю почему)
-
-  А если нам нужно сделать скролл относительно ТЕКУЩЕГО положения на странице, то используем scrollBy
-
-  Дело в том, что метод scroll делает отсчет от верхней границы страницы, а scrollBy от текущего положения
-*/
-
-
-
-// Скролл страницы до видимости определенного элемента - метод scrollIntoView
-const boxElement = document.querySelector('.box')
-
-boxElement.scrollIntoView({
-  behavior: 'smooth',
-  block: 'end' // По умолчанию start. Также есть end, center, nearest(браузер сам определит ближайшую точку скролла)
-})
