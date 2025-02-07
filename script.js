@@ -1,91 +1,60 @@
-// Чтение и изменение текстового содержимого элемента - свойство textContent
-const paragraphElement = document.querySelector('.p-1')
-// console.log('1. Текстовое содержимое первого параграфа:', paragraphElement.textContent)
-// paragraphElement.textContent = 'Обновленный текст'
-// console.log('2. Текстовое содержимое первого параграфа:', paragraphElement.textContent)
-// paragraphElement.textContent += ' Добавленный текст'
-// console.log('3. Текстовое содержимое первого параграфа:', paragraphElement.textContent)
 /*
-  Свойство textContent не позволяет вставить html-разметку. Для этого есть другое свойство
+  Есть еще возможность добавить событие через разметку в HTML, но это не самый
+  удобный и не самый лучший способ. Поэтому мы будем делать это по-другому.
+*/
+
+// Обработка событий - свойство события у DOM-элемента
+// const buttonElement = document.querySelector('button')
+
+// buttonElement.onclick = () => {
+//   console.log('Произошел клик!')
+// }
+/*
+  У подобного способа есть минусы: мы не можем повесить несколько событий!
+  Самым удобным и фактически правильным способом добавления события является
+  способ через addEventListener
+*/
+// buttonElement.addEventListener('click', () => {
+//   console.log('Click')
+// })
+// buttonElement.addEventListener('click', () => {
+//   console.log('Super Click')
+// })'
+
+
+
+// Удаление события - метод removeEventListener
+// const firstButtonElement = document.querySelector('.button-1')
+// const secondButtonElement = document.querySelector('.button-2')
+
+// const logMessage = () => {
+//   console.log('Click!')
+// }
+
+// firstButtonElement.addEventListener('click', logMessage)
+
+// secondButtonElement.addEventListener('click', () => {
+//   firstButtonElement.removeEventListener('click', logMessage)
+// })
+/*
+  Важный момент: в методе removeEventListener, вторым аргументом мы передаем функцию,
+  которую нам надо убрать, но у нас там могла быть анонимная стрелочная функция. А её
+  передать просто так у нас не получиться, поэтому мы вынесли эту функцию 
+  в переменную logMessage и ссылаемся на нее при кликах
 */
 
 
 
-// Чтение и изменение HTML-содержимого элемента - свойство innerHTML
-// console.log('HTML-содержимое параграфа:', paragraphElement.innerHTML)
-// paragraphElement.innerHTML = `
-//   Обновленный текст
-//   <p>А также новый добавленный текст в новом параграфе</p>
-// `
-// console.log('HTML-содержимое параграфа:', paragraphElement.innerHTML)
-// paragraphElement.innerHTML += `
-//   Просто добавил текст
-// `
-// console.log('HTML-содержимое параграфа:', paragraphElement.innerHTML)
+// Объект события - event(Уникальный объект для каждого события)
+// const buttonElement = document.querySelector('.button-1')
+
+// buttonElement.addEventListener('click', (event) => {
+//   console.log(event)
+// })
+
+
+
+// Всплытие событий(Или bubbling) и погружение(Capturing)
 /*
-  Также есть свойство outerHTML - оно позволяет получить HTMl-содержимое элемента
-  включая сам элемент
-*/
-
-
-
-/*
-  У innerHTML есть проблема - он перерисовывает всю разметку, даже если нам необходимо
-  добавить всего лишь одну строчку.
-  Поэтому внизу будет более правильный способ создания и добавления элементов.
-*/
-
-
-
-// Создание элемента - document.createElement
-const newParagraph = document.createElement('p')
-// const newParagraph2 = document.createElement('p')
-
-newParagraph.textContent = 'Четвертый параграф'
-// newParagraph2.textContent = 'Пятый параграф'
-newParagraph.classList.add('p-4')
-// newParagraph2.classList.add('p-5')
-
-// // И вставка элементов - методы append(в конец в элементе) и prepend(в начало в элементе)
-const boxElement = document.querySelector('.box')
-
-// boxElement.append(newParagraph)
-// boxElement.after(newParagraph2)
-/*
-  Есть еще методы before и after, которые добавляют элемент ДО и ПОСЛЕ элемента к которому мы 
-  применяем эти методы.
-  Т.е. если применить на box элементы before или after, то элементы в разметке добавяться
-  ДО и ПОСЛЕ него.
-*/
-
-
-
-// Вставка элементов с заменой - метод replaceWith
-/*
-  Этот метод просто полностью заменяет один элемент на другой
-*/
-// boxElement.replaceWith(newParagraph)
-
-
-
-// Вставка HTML-разметки - метод insertAdjacentHTMl
-const newHTML = `<s>Текст</s>`
-
-boxElement.insertAdjacentHTML('afterbegin', newHTML)
-
-
-
-// Удаление элементов - метод remove
-
-
-
-// Клонирование элемента - метод cloneNode
-const boxElementClone = boxElement.cloneNode(true) // без true будет поверхностное клонирование(без содержимого)
-boxElement.after(boxElementClone)
-
-
-
-// Перемещение элементов
-/*
-  Можно воспользоваться уже знакомыми методами after, befin, insertAdjacentElement и так далее
+  Вообщем, в теории вроде немного понятно, но на практике не особо
 */
