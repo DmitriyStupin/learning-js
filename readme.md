@@ -1,1 +1,1 @@
-# №34 JavaScript события мыши и указателя, Drag and Drop компонент
+# №35 JavaScript события клавиатуры: keydown и keyup. События ввода: input, change, cut, copy, paste

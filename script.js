@@ -1,55 +1,48 @@
-// Движение мыши - mousemove
-const boxElement = document.querySelector('.box')
-const buttonElement = document.querySelector('.button')
+// События клавиатуры - keydown и keyup
+// document.addEventListener('keydown', (event) => {
+//   console.log('keydown event', event)
+// })
 
-// buttonElement.addEventListener('mousemove', () => {
-//   console.log('Движение мыши')
+// document.addEventListener('keyup', (event) => {
+//   // console.log('keyup event', event)
 // })
 
 
 
-// Движение мыши - mouseover и mouseout (Учитывают движение курсора по дочерним элементам)
-// boxElement.addEventListener('mouseover', () => {
-//   console.log('Курсор навели на кнопку')
-// })
+// Действия браузера по умолчанию
+// document.addEventListener('keydown', (event) => {
+//   const { code } = event
 
-// boxElement.addEventListener('mouseout', () => {
-//   console.log('Курсор убрали с кнопки')
-// })
-
-
-
-// Движение мыши - mouseenter и mouseleave (Не учитывают движение курсора по дочерним элементам)
-// boxElement.addEventListener('mouseenter', () => {
-//   console.log('Курсор навели на кнопку')
-// })
-
-// boxElement.addEventListener('mouseleave', () => {
-//   console.log('Курсор убрали с кнопки')
+//   // Обработка нажатия на 'Tab'
+//   if (code === 'Tab') {
+//     event.preventDefault()
+//     console.log('Tab отменён')
+//   }
 // })
 
 
 
-// Нажатие мыши - mousedown, mouseup и click
-// buttonElement.addEventListener('mousedown', () => {
-//   console.log('1. mousedown')
-// })
+// Событие ввода - input
+const inputElement = document.querySelector('input');
+const nameOutputElement = document.querySelector('.name-output');
 
-// buttonElement.addEventListener('mouseup', () => {
-//   console.log('2. mouseup')
-// })
-
-// buttonElement.addEventListener('click', () => {
-//   console.log('3. click')
+// inputElement.addEventListener('input', (event) => {
+//   nameOutputElement.textContent = inputElement.value
 // })
 
 
 
-// Нажатие мыши - dblclick, двойной клик
-boxElement.addEventListener('click', () => {
-  console.log('click')
-})
+// Событие изменения значения поля ввода после потери состояния фокуса - change
+const errorMessageElement = document.querySelector('.error-message')
+inputElement.addEventListener('change', (event) => {
+  const isInvalid = inputElement.value.length < 5
 
-boxElement.addEventListener('dblclick', () => {
-  console.log('dblclick')
+  // if (isInvalid) {
+  //   errorMessageElement.textContent = 'Минимальная длина - 5 символов'
+  // } else {
+  //   errorMessageElement.textContent = ''
+  // }
+  errorMessageElement.textContent = isInvalid
+    ? 'Минимальная длина - 5 символов'
+    : ''
 })
