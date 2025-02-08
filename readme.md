@@ -1,1 +1,1 @@
-# №35 JavaScript события клавиатуры: keydown и keyup. События ввода: input, change, cut, copy, paste
+# №36 JavaScript события фокуса: focus и blur, focusin и focusout | Методы focus и blur | activeElement
