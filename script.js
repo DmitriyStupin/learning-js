@@ -1,45 +1,55 @@
-// Делегирование событий
-/*
-  Как бы задачу решил новичок:
-*/
-// const todoItemElements = document.querySelectorAll('.todo__item')
+// Движение мыши - mousemove
+const boxElement = document.querySelector('.box')
+const buttonElement = document.querySelector('.button')
 
-// todoItemElements.forEach((todoItemElement) => {
-//   todoItemElement.addEventListener('click', () => {
-//     todoItemElement.classList.toggle('is-completed')
-//   })
-// })
-/*
-  У нас в дереве много элементов todo__item и каждый этот элемент имеет
-  обработчик клика. То есть, если бы таких элементов было 1000, то браузер хранил бы
-  информацию о 1000 обработчиков события клика.
-
-  К тому же, если мы добавим элементы через JS, то они не попадут под обработчики кликов.
-
-  Поэтому, изучим концепцию делегирования событий
-*/
-// const onTodoItemClick = (todoItemElement) => {
-//   todoItemElement.classList.toggle('is-completed')
-// }
-
-// document.addEventListener('click', (event) => {
-//   const todoItemElement = event.target.closest('.todo__item');
-
-//   if (todoItemElement) {
-//     onTodoItemClick(todoItemElement)
-//   }
+// buttonElement.addEventListener('mousemove', () => {
+//   console.log('Движение мыши')
 // })
 
 
 
-// Поведение браузера по умолчанию - метод preventDefault()
-/*
-  Чтобы отменить действие браузера по умолчанию необходимо при обработчике события
-  использовать метод event.preventDefault()
-*/
+// Движение мыши - mouseover и mouseout (Учитывают движение курсора по дочерним элементам)
+// boxElement.addEventListener('mouseover', () => {
+//   console.log('Курсор навели на кнопку')
+// })
+
+// boxElement.addEventListener('mouseout', () => {
+//   console.log('Курсор убрали с кнопки')
+// })
 
 
 
-// Генерация собственных событий - класс Event, метод dispatchEvent
+// Движение мыши - mouseenter и mouseleave (Не учитывают движение курсора по дочерним элементам)
+// boxElement.addEventListener('mouseenter', () => {
+//   console.log('Курсор навели на кнопку')
+// })
+
+// boxElement.addEventListener('mouseleave', () => {
+//   console.log('Курсор убрали с кнопки')
+// })
 
 
+
+// Нажатие мыши - mousedown, mouseup и click
+// buttonElement.addEventListener('mousedown', () => {
+//   console.log('1. mousedown')
+// })
+
+// buttonElement.addEventListener('mouseup', () => {
+//   console.log('2. mouseup')
+// })
+
+// buttonElement.addEventListener('click', () => {
+//   console.log('3. click')
+// })
+
+
+
+// Нажатие мыши - dblclick, двойной клик
+boxElement.addEventListener('click', () => {
+  console.log('click')
+})
+
+boxElement.addEventListener('dblclick', () => {
+  console.log('dblclick')
+})
