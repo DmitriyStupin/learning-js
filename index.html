@@ -6,11 +6,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/styles.css">
   <script src="./script.js" defer></script>
-  <title>Lesson 36</title>
+  <title>Lesson 37</title>
 </head>
 
 <body>
-  
+  <form action="/registration" method="post" id="regForm">
+    <p class="field">
+      <label class="field__label" for="login">Логин</label>
+      <input class="field__control" id="login" name="login" />
+    </p>
+    <p class="field">
+      <label class="field__label" for="password">Пароль</label>
+      <input class="field__control" id="password" name="password" type="password" />
+    </p>
+    <p class="field">
+      <label class="field__label" for="about">О себе</label>
+      <textarea class="field__control" id="about" name="about"></textarea>
+    </p>
+    <fieldset class="radios">
+      <legend class="radios__legend">Ваш пол</legend>
+
+      <input class="radios__control" id="male" name="gender" type="radio" value="Мужской" checked />
+      <label class="radios__label" for="male">Мужской</label>
+
+      <input class="radios__control" id="female" name="gender" type="radio" value="Женский" />
+      <label class="radios__label" for="female">Женский</label>
+    </fieldset>
+    <div class="field checkbox">
+      <input class="checkbox__control" id="agreement" name="agreement" type="checkbox" />
+      <label class="field__label checkbox__label" for="agreement">Согласен на всё</label>
+    </div>
+    <button type="submit">Регистрация</button>
+  </form>
+
+  <div class="city-selection">
+    <label for="city">Ваш город:</label>
+    <select name="city" id="city" form="regForm">
+      <option value="Москва">Москва</option>
+      <option value="Красноярск">Красноярск</option>
+      <option value="Канск">Канск</option>
+    </select>
+  </div>
 </body>
 
 </html>

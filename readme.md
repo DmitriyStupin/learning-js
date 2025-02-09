@@ -1,1 +1,1 @@
-# №36 JavaScript события фокуса: focus и blur, focusin и focusout | Методы focus и blur | activeElement
+# №37 Формы в JS — доступ к элементам форм, чтение и изменение значений полей ввода, атрибут form
