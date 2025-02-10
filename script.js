@@ -1,48 +1,42 @@
-// События клавиатуры - keydown и keyup
-// document.addEventListener('keydown', (event) => {
-//   console.log('keydown event', event)
-// })
+const loadTodoFormElement = document.querySelector('.load-todo-form')
+const todoIdInputElement = document.querySelector('#todo-id')
+const resultElement = document.querySelector('.result')
 
-// document.addEventListener('keyup', (event) => {
-//   // console.log('keyup event', event)
-// })
+loadTodoFormElement.addEventListener('submit', (event) => {
+  event.preventDefault()
 
+  fetch(`https://jsonplaceholder.typicode.com/todos/${todoIdInputElement.value}`)
+      .then((response) => {
+        console.log('response:', response)
 
+        if (!response.ok) {
+          const errorMessage = response.status === 404
+            ? 'Задача по указанному идентификатору не найдена :('
+            : 'Что-то пошло не так :('
 
-// Действия браузера по умолчанию
-// document.addEventListener('keydown', (event) => {
-//   const { code } = event
+          throw new Error(errorMessage)
+        }
 
-//   // Обработка нажатия на 'Tab'
-//   if (code === 'Tab') {
-//     event.preventDefault()
-//     console.log('Tab отменён')
-//   }
-// })
+        return response.json()
+      })
+      .then((json) => {
+        console.log(json)
 
+        const { id, title, completed } = json
 
+        resultElement.innerHTML = `
+          <input
+            id="todo-${id}"
+            type="checkbox"
+            ${completed ? 'checked' : ''}
+          />
+          <label for="todo-${id}">${title}</label>
+        `
+      })
+      .catch((error) => {
+        console.log('error:', error)
 
-// Событие ввода - input
-const inputElement = document.querySelector('input');
-const nameOutputElement = document.querySelector('.name-output');
-
-// inputElement.addEventListener('input', (event) => {
-//   nameOutputElement.textContent = inputElement.value
-// })
-
-
-
-// Событие изменения значения поля ввода после потери состояния фокуса - change
-const errorMessageElement = document.querySelector('.error-message')
-inputElement.addEventListener('change', (event) => {
-  const isInvalid = inputElement.value.length < 5
-
-  // if (isInvalid) {
-  //   errorMessageElement.textContent = 'Минимальная длина - 5 символов'
-  // } else {
-  //   errorMessageElement.textContent = ''
-  // }
-  errorMessageElement.textContent = isInvalid
-    ? 'Минимальная длина - 5 символов'
-    : ''
+        resultElement.innerHTML = error.message
+      })
 })
+
